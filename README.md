@@ -26,7 +26,7 @@ The following data have been used for training and validation of DENVIS v1.0 mod
 * [AutoDock Vina](https://storage.googleapis.com/denvis_v1_outputs/vina_outputs.tar.gz)
 * [GNINA](http://bits.csb.pitt.edu/files/defaultCNN_dude.tar.gz)
 * [RF-score & NN-score](http://bits.csb.pitt.edu/files/rfnn_dude_scores.tgz)
-* [Gold, Glide, Surflex, Flex]() [TODO]
+* [Gold, Glide, Surflex, Flex](https://storage.googleapis.com/denvis_v1_outputs/docking_performance_scores.tar.gz) (performance metrics data only - see Note #3 below.)
 
 Note #1: GNINA, RF-score and NN-score scoring outputs for DUD-E are kindly provided by [David Koes Lab](http://bits.csb.pitt.edu/) (original links provided above).
 If clicking any of those links does not initiate downloading, please copy the link address and paste it on a new tab or try using the `wget` command. 
