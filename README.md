@@ -14,7 +14,7 @@
 * [Gold, Glide, Surflex, Flex]() [TODO]
 
 Note #1: GNINA, RF-score and NN-score scoring outputs for DUD-E are kindly provided by [David Koes Lab](http://bits.csb.pitt.edu/) (original links provided above).
-If clicking any of these links does not initiate downloading, please copy the link address and paste it on a new tab or try using the `wget` command. 
+If clicking any of those links does not initiate downloading, please copy the link address and paste it on a new tab or try using the `wget` command. 
 
 Note #2: AutoDock Vina docking outputs for DUD-E are also provided in `.sdf` format from David Koes Lab. The results have been downloaded from the original [link](http://bits.csb.pitt.edu/files/docked_dude.tar) (5GB) and processed to extract the docking scores only, which are stored in `.csv` format in the link provided above. If you wish to extract the docking scores from the original `.sdf` files, download docked data from the original link and run the `parse_autodock_outputs.py` script (for this you might need the following extra python packages: `rdkit`, `click`, `tqdm`).
 
