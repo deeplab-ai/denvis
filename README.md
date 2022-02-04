@@ -21,12 +21,12 @@ The following data have been used for training and validation of DENVIS v1.0 mod
 ## 1. Output scores data
 
   Download the following DUD-E output scores and extract into `data/outputs` folder.
-* [DENVIS](https://storage.googleapis.com/denvis_v1_outputs/denvis_outputs.tar.gz)
-* [DeepDTA](https://storage.googleapis.com/denvis_v1_outputs/deepdta_outputs.tar.gz)
-* [AutoDock Vina](https://storage.googleapis.com/denvis_v1_outputs/vina_outputs.tar.gz)
-* [GNINA](http://bits.csb.pitt.edu/files/defaultCNN_dude.tar.gz)
-* [RF-score & NN-score](http://bits.csb.pitt.edu/files/rfnn_dude_scores.tgz)
-* [Gold, Glide, Surflex, Flex](https://storage.googleapis.com/denvis_v1_outputs/docking_performance_scores.tar.gz) (performance metrics data only - see Note #3 below.)
+* [DENVIS](https://storage.googleapis.com/denvis_v1_outputs/denvis_outputs.tar.gz) (1.1G)
+* [DeepDTA](https://storage.googleapis.com/denvis_v1_outputs/deepdta_outputs.tar.gz) (109M)
+* [AutoDock Vina](https://storage.googleapis.com/denvis_v1_outputs/vina_outputs.tar.gz) (141M)
+* [GNINA](http://bits.csb.pitt.edu/files/defaultCNN_dude.tar.gz) (24M) [TODO: confirm size]
+* [RF-score & NN-score](http://bits.csb.pitt.edu/files/rfnn_dude_scores.tgz) (179M) [TODO: confirm size]
+* [Gold, Glide, Surflex, Flex](https://storage.googleapis.com/denvis_v1_outputs/docking_performance_scores.tar.gz) (11K - performance metrics data only - see Note #3 below.)
 
 Note #1: GNINA, RF-score and NN-score scoring outputs for DUD-E are kindly provided by [David Koes Lab](http://bits.csb.pitt.edu/) (original links provided above).
 If clicking any of those links does not initiate downloading, please copy the link address and paste it on a new tab or try using the `wget` command. 
