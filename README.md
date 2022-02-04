@@ -1,12 +1,26 @@
 # Deep Neural Virtual Screening (DENVIS)
 
 # Inference API
-## 1. Data [TODO]
-* [DUD-E target data](https://storage.googleapis.com/denvis_v1_data/dude_targets.tar.gz)
+## 1. Data
+
+### 1.1 Instructions on how to set-up target data [TODO]
+* Download from PDB
+* PDB complexes together with crystal ligands
+
+The following data have been used for training and validation of DENVIS v1.0 models:
+* [PDBBind v.2019 general set]() [TODO]
+* [PDBBind v.2019 refined set]() [TODO] (1G)
+* [PDBBind v.2019 core set](https://storage.googleapis.com/denvis_v1_data/pdbbind_v2019_core.tar.gz) (68M)
+* [DUD-E](https://storage.googleapis.com/denvis_v1_data/dude.tar.gz) (23M)
+
+### 1.2 Instructions on how to set-up ligand data  [TODO]
+
 ## 2. Inference via HTTP requests [TODO]
 
 # DENVIS v1.0 paper results reproduction [WIP]
-  1. Download the following DUD-E output scores and extract into `data/outputs` folder.
+## 1. Output scores data
+
+  Download the following DUD-E output scores and extract into `data/outputs` folder.
 * [DENVIS](https://storage.googleapis.com/denvis_v1_outputs/denvis_outputs.tar.gz)
 * [DeepDTA](https://storage.googleapis.com/denvis_v1_outputs/deepdta_outputs.tar.gz)
 * [AutoDock Vina](https://storage.googleapis.com/denvis_v1_outputs/vina_outputs.tar.gz)
@@ -21,5 +35,5 @@ Note #2: AutoDock Vina docking outputs for DUD-E are also provided in `.sdf` for
 
 Note #3: Docking outputs with Gold, Glide, Surflex and Flex algorithms are, unfortunately, not publicly available. They have been kindly made available to us by [Dr. Liliane Mouawad](https://science.institut-curie.org/research/biology-chemistry-of-radiations-cell-signaling-and-cancer-axis/cmbc/chemistry-and-modelling-for-protein-recognition/team-members/?mbr=liliane-mouawad) and are from this [paper](https://jcheminf.biomedcentral.com/articles/10.1186/s13321-016-0167-x). To enable reproduction of our paper results, we make available our computed performance metrics for each of these methods and each target protein in DUD-E.
 
-2. Environment instructions / package requirements [TODO]
-3. Running notebook instructions [TODO]
+## 2. Environment / requirements [TODO]
+## 3. Running notebook instructions [TODO]
