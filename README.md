@@ -1,7 +1,8 @@
 # Deep Neural Virtual Screening (DENVIS)
 
 # Inference API
-## 1. Data pre-processing [TODO]
+## 1. Data [TODO]
+* [DUD-E target data](https://storage.googleapis.com/denvis_v1_data/dude_targets.tar.gz)
 ## 2. Inference via HTTP requests [TODO]
 
 # DENVIS v1.0 paper results reproduction [WIP]
