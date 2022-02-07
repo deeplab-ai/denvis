@@ -37,6 +37,6 @@ Note #2: AutoDock Vina docking outputs for DUD-E are also provided in `.sdf` for
 Note #3: Docking outputs with Gold, Glide, Surflex and Flex algorithms are, unfortunately, not publicly available. They have been kindly made available to us by [Dr. Liliane Mouawad](https://science.institut-curie.org/research/biology-chemistry-of-radiations-cell-signaling-and-cancer-axis/cmbc/chemistry-and-modelling-for-protein-recognition/team-members/?mbr=liliane-mouawad) and are from this [paper](https://jcheminf.biomedcentral.com/articles/10.1186/s13321-016-0167-x). To enable reproduction of our paper results, we make available our computed performance metrics for each of these methods and each target protein in DUD-E.
 
 ## 2. Set-up environment
-The following packages are required for running the noteboks: `python>=3.6`, `numpy`, `scipy`, `pandas`, `matplotlib`, `seaborn`, `pingouin`, `tqdm` and `jupyter`.
+The following packages are required for running the noteboks: `python>=3.6`, `numpy`, `scipy`, `pandas`, `sklearn`, `matplotlib`, `seaborn`, `pingouin`, `tqdm` and `jupyter`.
 
 ## 3. Run notebooks
