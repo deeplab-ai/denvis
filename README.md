@@ -39,4 +39,4 @@ Note #3: Docking outputs with Gold, Glide, Surflex and Flex algorithms are, unfo
 ## 2. Set-up environment
 The following packages are required for running the noteboks: `python>=3.6`, `numpy`, `scipy`, `pandas`, `matplotlib`, `seaborn`, `pingouin` and `jupyter`.
 
-## 3. Running notebook instructions [TODO]
+## 3. Run notebooks
