@@ -8,8 +8,8 @@
 * PDB complexes together with crystal ligands
 
 The following data have been used for training and validation of DENVIS v1.0 models:
-* [PDBBind v.2019 general set]() [TODO] (4.6G)
-* [PDBBind v.2019 refined set]() [TODO] (1G)
+* [PDBBind v.2019 general set](https://storage.googleapis.com/denvis_v1_data/pdbbind_v2019_general.tar.gz) (4.6G)
+* [PDBBind v.2019 refined set](https://storage.googleapis.com/denvis_v1_data/pdbbind_v2019_general.tar.gz) (1G)
 * [PDBBind v.2019 core set](https://storage.googleapis.com/denvis_v1_data/pdbbind_v2019_core.tar.gz) (68M)
 * [DUD-E](https://storage.googleapis.com/denvis_v1_data/dude.tar.gz) (23M)
 
