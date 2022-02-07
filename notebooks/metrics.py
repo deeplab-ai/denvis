@@ -2,9 +2,6 @@ import math
 import numpy as np
 from sklearn import metrics as skmetrics
 
-from denvis.metrics import average_score_across_targets, bedroc_score, \
-    ef_score, score_per_target
-
 from rdkit.ML.Scoring.Scoring import CalcBEDROC
 
 
@@ -281,3 +278,5 @@ def compute_bedroc_scores(results, alpha, avg_fun):
                                                 avg_fun=avg_fun)
 
     return bedroc_per_target, bedroc_micro
+
+
