@@ -11,7 +11,7 @@ The following data have been used for training and validation of DENVIS v1.0 mod
 * [PDBBind v.2019 general set](https://storage.googleapis.com/denvis_v1_data/pdbbind_v2019_general.tar.gz) (4.6G)
 * [PDBBind v.2019 refined set](https://storage.googleapis.com/denvis_v1_data/pdbbind_v2019_refined.tar.gz) (1G)
 * [PDBBind v.2019 core set](https://storage.googleapis.com/denvis_v1_data/pdbbind_v2019_core.tar.gz) (68M)
-* [TOUGH-M1]() (895M) [TODO]
+* [TOUGH-M1](https://storage.googleapis.com/denvis_v1_data/tough_m1.tar.gz) (895M)
 * [DUD-E](https://storage.googleapis.com/denvis_v1_data/dude.tar.gz) (23M)
 
 ### 1.2 Instructions on how to set-up ligand data  [TODO --> Nick]
