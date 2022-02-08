@@ -77,16 +77,13 @@ def _read_format_metadata(path):
     return _format_metadata(_read_metadata(path))
 
 
-def parse_results_vina(path, dataset, reduce='max'):
+def parse_results_vina(path, reduce='max'):
     """
     Parses VINA screening results.
 
     Args:
         path: str
             Path of results saved in json format.
-
-        dataset: str, {'DUD-E'}
-            Dataset name.
 
         reduce: str, {'max', 'mean', None}
             If `max`, the maximum score for each target-ligand pair
@@ -100,17 +97,14 @@ def parse_results_vina(path, dataset, reduce='max'):
             `['target_id', 'ligand_id', 'y_true', 'y_score',
             'version', 'ckpt']`.
     """
-    if dataset == 'DUD-E':
-        # First column is index --> discard
-        results_df = pd.read_csv(path)
-        # Compatible column names
-        results_df = results_df.rename(columns={
-            'target_list': 'target_id',
-            'ligand_list': 'ligand_id',
-            'y_list': 'y_true',
-            'score_list': 'y_score'})
-    else:
-        raise ValueError(f"Vina results not available for {dataset} dataset.")
+    # First column is index --> discard
+    results_df = pd.read_csv(path)
+    # Compatible column names
+    results_df = results_df.rename(columns={
+        'target_list': 'target_id',
+        'ligand_list': 'ligand_id',
+        'y_list': 'y_true',
+        'score_list': 'y_score'})
 
     results_df['y_score'] = -results_df[
         'y_score']  # Scores are stored as negative
@@ -119,7 +113,7 @@ def parse_results_vina(path, dataset, reduce='max'):
         ['target_id', 'ligand_id', 'y_true', 'y_score']]  # Reorder columns
 
 
-def parse_results_gnina(path, dataset):
+def parse_results_gnina(path):
     """
     Parses GNINA screening results.
 
@@ -127,30 +121,24 @@ def parse_results_gnina(path, dataset):
         path: str
             Path of results saved in json format.
 
-        dataset: str, {'DUD-E', 'LIT-PCBA'}
-            Dataset name.
-
     Returns:
         results_df: pd.DataFrame
             Results DataFrame with the following columns:
             `['target_id', 'ligand_id', 'y_true', 'y_score',
             'version', 'ckpt']`.
     """
-    if dataset in ['DUD-E', 'LIT-PCBA']:
-        results_df = pd.read_csv(
-            path,
-            delimiter=' ',
-            header=None,
-            usecols=range(4),  # Discard last column --> model name
-            names=['y_true', 'y_score', 'target_id', 'ligand_id'])
-    else:
-        raise ValueError(f"GNINA results not available for {dataset} dataset.")
+    results_df = pd.read_csv(
+        path,
+        delimiter=' ',
+        header=None,
+        usecols=range(4),  # Discard last column --> model name
+        names=['y_true', 'y_score', 'target_id', 'ligand_id'])
 
     return results_df[
         ['target_id', 'ligand_id', 'y_true', 'y_score']]  # Reorder columns
 
 
-def parse_results_rf_score(path, dataset, reduce='max', prog_bar=False):
+def parse_results_rf_score(path, reduce='max', prog_bar=False):
     """
     Parses RF-score screening results.
 
@@ -158,9 +146,6 @@ def parse_results_rf_score(path, dataset, reduce='max', prog_bar=False):
         path: str
             Path of results saved in json format.
 
-        dataset: str, {'DUD-E'}
-            Dataset name.
-
         reduce: str, {'max', 'mean', None}
             If `max`, the maximum score for each target-ligand pair
             will be returned only. If `mean`, the mean score  will
@@ -177,11 +162,11 @@ def parse_results_rf_score(path, dataset, reduce='max', prog_bar=False):
             'version', 'ckpt']`.
     """
     return _parse_results_rf_nn_score(
-        path=path, dataset=dataset, reduce=reduce, method='rfscore',
+        path=path, reduce=reduce, method='rfscore',
         prog_bar=prog_bar)
 
 
-def parse_results_nn_score(path, dataset, reduce='max', prog_bar=False):
+def parse_results_nn_score(path, reduce='max', prog_bar=False):
     """
     Parses NN-score screening results.
 
@@ -189,9 +174,6 @@ def parse_results_nn_score(path, dataset, reduce='max', prog_bar=False):
         path: str
             Path of results saved in json format.
 
-        dataset: str, {'DUD-E'}
-            Dataset name.
-
         reduce: str, {'max', 'mean', None}
             If `max`, the maximum score for each target-ligand pair
             will be returned only. If `mean`, the mean score  will
@@ -208,45 +190,41 @@ def parse_results_nn_score(path, dataset, reduce='max', prog_bar=False):
             'version', 'ckpt']`.
     """
     return _parse_results_rf_nn_score(
-        path=path, dataset=dataset, reduce=reduce, method='nnscore3',
+        path=path, reduce=reduce, method='nnscore3',
         prog_bar=prog_bar)
 
 
-def _parse_results_rf_nn_score(path, dataset, method, reduce, prog_bar):
+def _parse_results_rf_nn_score(path, method, reduce, prog_bar):
     """Helper function implementing parsing for RF and NN score. """
-    if dataset == 'DUD-E':
-        def process_row(row, target_id):
-            """Implements logic for parsing results from a single row. """
-            ligand = row['ligand_id']
-            splitted = re.split('_|.pdbqt', ligand)
-            if len(splitted) == 4:  # expected
-                ligand_type, ligand_id, docking_id, _ = splitted
-                y_true = 1 if ligand_type == 'active' else 0
-                return target_id, ligand_id, int(y_true), row['y_score'], int(
-                    docking_id)
-            elif len(splitted) == 1:  # return None for problematic entries
-                return [None] * 5
+    def process_row(row, target_id):
+        """Implements logic for parsing results from a single row. """
+        ligand = row['ligand_id']
+        splitted = re.split('_|.pdbqt', ligand)
+        if len(splitted) == 4:  # expected
+            ligand_type, ligand_id, docking_id, _ = splitted
+            y_true = 1 if ligand_type == 'active' else 0
+            return target_id, ligand_id, int(y_true), row['y_score'], int(
+                docking_id)
+        elif len(splitted) == 1:  # return None for problematic entries
+            return [None] * 5
 
-        columns = ['target_id', 'ligand_id', 'y_true', 'y_score', 'docking_id']
-        results_df = pd.DataFrame(columns=columns)
-        targets = os.listdir(path)
-        target_iter = tqdm(targets) if prog_bar else targets
-        for target in target_iter:
-            path_target = os.path.join(path, target, 'pdbqt', method)
-            tmp = pd.read_csv(path_target, delimiter=' ', header=None,
-                              names=['ligand_id', 'y_score'])
-            results_df_tmp = pd.DataFrame(columns=columns)
-            results_df_tmp[['target_id', 'ligand_id', 'y_true', 'y_score',
-                            'docking_id']] = \
-                tmp.apply(lambda row: process_row(row, target), axis=1,
-                          result_type='expand')
-            results_df = pd.concat((results_df, results_df_tmp), axis='index')
+    columns = ['target_id', 'ligand_id', 'y_true', 'y_score', 'docking_id']
+    results_df = pd.DataFrame(columns=columns)
+    targets = os.listdir(path)
+    target_iter = tqdm(targets) if prog_bar else targets
+    for target in target_iter:
+        path_target = os.path.join(path, target, 'pdbqt', method)
+        tmp = pd.read_csv(path_target, delimiter=' ', header=None,
+                          names=['ligand_id', 'y_score'])
+        results_df_tmp = pd.DataFrame(columns=columns)
+        results_df_tmp[['target_id', 'ligand_id', 'y_true', 'y_score',
+                        'docking_id']] = \
+            tmp.apply(lambda row: process_row(row, target), axis=1,
+                      result_type='expand')
+        results_df = pd.concat((results_df, results_df_tmp), axis='index')
 
-        results_df['y_true'] = pd.to_numeric(
-            results_df['y_true'])  # Convert `y_true` to numeric (int)
-
-    else:
-        raise ValueError(f"Vina results not available for {dataset} dataset.")
+    results_df['y_true'] = pd.to_numeric(
+        results_df['y_true'])  # Convert `y_true` to numeric (int)
 
     if method == 'rfscore':
         results_df = results_df.dropna()  # Discard invalid entries (null)
@@ -256,16 +234,13 @@ def _parse_results_rf_nn_score(path, dataset, method, reduce, prog_bar):
         ['target_id', 'ligand_id', 'y_true', 'y_score']]  # Reorder columns
 
 
-def parse_results_deeppurpose(path, dataset=None, reduce='max'):
+def parse_results_deeppurpose(path, reduce='max'):
     """
     Parses screening results into a single DataFrame.
 
     Args:
         path: str
             Path of results saved in json format.
-
-        dataset: str, optional (default: None)
-            Dataset name. Currently not being used.
 
         reduce: functional (default: `max`)
             What function to use to process protein-ligand pairs with more than
