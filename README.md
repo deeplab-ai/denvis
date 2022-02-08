@@ -68,7 +68,7 @@ The followng package is also required for running the optional `parse_autodock_o
 * `click`
 
 
-Example of creating your own environment from scratch using `conda`:
+For example, if you wish to create your own environment from scratch using `conda`, you can run:
 ```bash
 conda create -n denvis python=3.7 numpy scipy pandas scikit-learn rdkit matplotlib seaborn pingouin pyarrow click tqdm jupyter -c conda-forge -c rdkit
 ```
