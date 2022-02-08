@@ -21,7 +21,9 @@ The following data have been used for training and validation of DENVIS v1.0 mod
 # DENVIS v1.0 paper results reproduction [WIP]
 ## 1. Download output scores
 
-  Download the following DUD-E output scores and extract into `data/outputs` folder.
+Run `download_extract_data.sh` to download and extract all output data/scores used in the Benchmark.
+
+Alternatively, you can manually download the following DUD-E output scores and extract into `data/outputs` folder.
 * [DENVIS](https://storage.googleapis.com/denvis_v1_outputs/denvis_outputs.tar.gz) (1.1G)
 * [DeepDTA](https://storage.googleapis.com/denvis_v1_outputs/deepdta_outputs.tar.gz) (109M)
 * [AutoDock Vina](https://storage.googleapis.com/denvis_v1_outputs/vina_outputs.tar.gz) (141M)
@@ -35,6 +37,8 @@ If clicking any of those links does not initiate downloading, please copy the li
 Note #2: AutoDock Vina docking outputs for DUD-E are also provided in `.sdf` format from David Koes Lab. The results have been downloaded from the original [link](http://bits.csb.pitt.edu/files/docked_dude.tar) (5GB) and processed to extract the docking scores only, which are stored in `.csv` format in the link provided above. If you wish to extract the docking scores from the original `.sdf` files, download docked data from the original link and run the `parse_autodock_outputs.py` script (for this you might need the following extra python packages: `rdkit`, `click`, `tqdm`).
 
 Note #3: Docking outputs with Gold, Glide, Surflex and Flex algorithms are, unfortunately, not publicly available. They have been kindly made available to us by [Dr. Liliane Mouawad](https://science.institut-curie.org/research/biology-chemistry-of-radiations-cell-signaling-and-cancer-axis/cmbc/chemistry-and-modelling-for-protein-recognition/team-members/?mbr=liliane-mouawad) and are from this [paper](https://jcheminf.biomedcentral.com/articles/10.1186/s13321-016-0167-x). To enable reproduction of our paper results, we make available our computed performance metrics for each of these methods and each target protein in DUD-E.
+
+Note #4: If you manually download and extract the data you might need to update the data paths in the notebooks below.
 
 ## 2. Set-up environment
 The following packages are required for running the noteboks: 
