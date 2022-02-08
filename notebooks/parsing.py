@@ -7,7 +7,7 @@ import numpy as np
 import pandas as pd
 
 
-def parse_results(path, metadata_path=None, target_binary=True):
+def parse_results_denvis(path, metadata_path=None, target_binary=True):
     """
     Parses screening results from (possibly) multiple runs/checkpoints into a
     single DataFrame and metadata into an additional DataFrame.
