@@ -11,7 +11,7 @@ The following data have been used for training and validation of DENVIS v1.0 mod
 * [PDBBind v.2019 general set](https://storage.googleapis.com/denvis_v1_data/pdbbind_v2019_general.tar.gz) (4.6G)
 * [PDBBind v.2019 refined set](https://storage.googleapis.com/denvis_v1_data/pdbbind_v2019_refined.tar.gz) (1G)
 * [PDBBind v.2019 core set](https://storage.googleapis.com/denvis_v1_data/pdbbind_v2019_core.tar.gz) (68M)
-* [TOUGH-M1]() (895M) [TODO]
+* [TOUGH-M1](https://storage.googleapis.com/denvis_v1_data/tough_m1.tar.gz) (895M)
 * [DUD-E](https://storage.googleapis.com/denvis_v1_data/dude.tar.gz) (23M)
 
 ### 1.2 Instructions on how to set-up ligand data  [TODO --> Nick]
@@ -19,9 +19,11 @@ The following data have been used for training and validation of DENVIS v1.0 mod
 ## 2. Inference via HTTP requests [TODO --> Nick]
 
 # DENVIS v1.0 paper results reproduction [WIP]
-## 1. Output scores data
+## 1. Download output scores
 
-  Download the following DUD-E output scores and extract into `data/outputs` folder.
+Run `download_extract_data.sh` to download and extract all output data/scores used in the Benchmark.
+
+Alternatively, you can manually download the following DUD-E output scores and extract into `data/outputs` folder.
 * [DENVIS](https://storage.googleapis.com/denvis_v1_outputs/denvis_outputs.tar.gz) (1.1G)
 * [DeepDTA](https://storage.googleapis.com/denvis_v1_outputs/deepdta_outputs.tar.gz) (109M)
 * [AutoDock Vina](https://storage.googleapis.com/denvis_v1_outputs/vina_outputs.tar.gz) (141M)
@@ -36,7 +38,26 @@ Note #2: AutoDock Vina docking outputs for DUD-E are also provided in `.sdf` for
 
 Note #3: Docking outputs with Gold, Glide, Surflex and Flex algorithms are, unfortunately, not publicly available. They have been kindly made available to us by [Dr. Liliane Mouawad](https://science.institut-curie.org/research/biology-chemistry-of-radiations-cell-signaling-and-cancer-axis/cmbc/chemistry-and-modelling-for-protein-recognition/team-members/?mbr=liliane-mouawad) and are from this [paper](https://jcheminf.biomedcentral.com/articles/10.1186/s13321-016-0167-x). To enable reproduction of our paper results, we make available our computed performance metrics for each of these methods and each target protein in DUD-E.
 
-## 2. Environment / requirements
-The following packages are required for running the noteboks: `python>=3.6`, `numpy`, `scipy`, `pandas`, `matplotlib`, `seaborn`, `pingouin` and `jupyter`.
+Note #4: If you manually download and extract the data you might need to update the data paths in the notebooks below.
 
-## 3. Running notebook instructions [TODO]
+## 2. Set-up environment
+The following packages are required for running the noteboks: 
+* `python>=3.6`
+* `numpy`
+* `scipy`
+* `pandas`
+* `sklearn`
+* `rdkit`
+* `matplotlib`
+* `seaborn`
+* `pingouin`
+* `pyarrow`
+* `tqdm`
+* `jupyter`
+
+Example using `conda`:
+```bash
+conda create -n denvis python=3.7 numpy scipy pandas scikit-learn rdkit matplotlib seaborn pingouin pyarrow tqdm jupyter -c conda-forge -c rdkit
+```
+
+## 3. Run notebooks
