@@ -27,11 +27,12 @@ dependencies:
   - brotlipy=0.7.0=py37h271585c_1003
   - bzip2=1.0.8=h1de35cc_0
   - c-ares=1.18.1=h0d85af4_0
-  - ca-certificates=2021.10.8=h033912b_0
+  - ca-certificates=2021.10.26=hecd8cb5_2
   - cairo=1.16.0=h8023c5d_1
-  - certifi=2021.10.8=py37hf985489_1
+  - certifi=2021.10.8=py37hecd8cb5_2
   - cffi=1.15.0=py37hc55c11b_1
   - charset-normalizer=2.0.11=pyhd8ed1ab_0
+  - click=8.0.3=pyhd3eb1b0_0
   - cryptography=36.0.1=py37h5e77fcc_0
   - cycler=0.11.0=pyhd8ed1ab_0
   - debugpy=1.5.1=py37hd8d24ac_0
@@ -126,7 +127,7 @@ dependencies:
   - numpy=1.21.5=py37h3c8089f_0
   - olefile=0.46=py37_0
   - openjpeg=2.4.0=h6e7aa92_1
-  - openssl=1.1.1l=h0d85af4_0
+  - openssl=1.1.1m=hca72f7f_0
   - orc=1.6.7=h590cbdb_2
   - outdated=0.2.1=pyhd8ed1ab_0
   - packaging=21.3=pyhd8ed1ab_0
