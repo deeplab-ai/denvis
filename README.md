@@ -18,7 +18,7 @@ The following data have been used for training and validation of DENVIS v1.0 mod
 
 ## 2. Inference via HTTP requests [TODO --> Nick]
 
-# DENVIS v1.0 paper results reproduction [WIP]
+# DENVIS v1.0 paper results reproduction
 ## 1. Download output scores
 
 It is recommended that you run `download_extract_data.sh` to download and extract all output data/scores used in the Benchmark and the ablation studies.
@@ -75,3 +75,14 @@ conda create -n denvis python=3.7 numpy scipy pandas scikit-learn rdkit matplotl
 ```
 
 ## 3. Run notebooks
+[1. Benchmark](notebooks/01_Benchmark.ipynb): Virtual screening benchmark on DUD-E dataset (Figures 3, 4; Tables 3, 4, S1, S2, S3).
+
+[2. Ablation studies](notebooks/02_Ablation_studies.ipynb): Ablation studies for DENVIS model (Figures 5, 6; Tables 6, 7).
+
+[3. Performance metrics](notebooks/03_Performance_metrics.ipynb): Analysis of virtual screening performance metrics (Figure 7).
+
+[4. Ensemble tuning](notebooks/04_Ensemble_tuning.ipynb): Virtual screening performance vs. number of base models in multi-run ensembles (Figure S2).
+
+[5. PDBbind affinity distribution](notebooks/05_PDBbind_affinity_distribution.ipynb): Target distribution of PDBbind v.2019 general set for three binding affinity metrics (Kd, Ki, IC50) (Figure S1).
+
+[6. Inference times](notebooks/06_Inference_times.ipynb): Analysis of inference times with DENVIS and DeepDTA (Table 5).
