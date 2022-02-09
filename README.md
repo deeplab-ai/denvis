@@ -21,7 +21,7 @@ The following data have been used for training and validation of DENVIS v1.0 mod
 # DENVIS v1.0 paper results reproduction [WIP]
 ## 1. Download output scores
 
-Run `download_extract_data.sh` to download and extract all output data/scores used in the Benchmark.
+It is recommended that you run `download_extract_data.sh` to download and extract all output data/scores used in the Benchmark and the ablation studies.
 
 Alternatively, you can manually download the following DUD-E output scores and extract into `data/outputs` folder:
 * [DENVIS](https://storage.googleapis.com/denvis_v1_outputs/denvis_outputs.tar.gz) (1.1G)
@@ -31,9 +31,6 @@ Alternatively, you can manually download the following DUD-E output scores and e
 * [RF-score & NN-score](http://bits.csb.pitt.edu/files/rfnn_dude_scores.tgz) (189M)
 * [Gold, Glide, Surflex, Flex](https://storage.googleapis.com/denvis_v1_outputs/docking_performance_scores.tar.gz) (11K - final performance scores only - see Note #3 below.)
 
-The following needs to be downloaded and saved into `data/pdbbdind` folder:
-* [PDBBind v.2019 general set target data](https://storage.googleapis.com/denvis_v1_data/INDEX_general_PL_data.2019)
-
 Note #1: GNINA, RF-score and NN-score scoring outputs for DUD-E are provided by [David Koes Lab](http://bits.csb.pitt.edu/) (original links provided above).
 If clicking any of those links does not initiate downloading, please copy the link address and paste it on a new tab or try using the `wget` command. 
 
@@ -42,6 +39,11 @@ Note #2: AutoDock Vina docking outputs for DUD-E are also provided in `.sdf` for
 Note #3: Docking outputs with Gold, Glide, Surflex and Flex algorithms are, unfortunately, not publicly available. They have been kindly made available to us by [Dr. Liliane Mouawad](https://science.institut-curie.org/research/biology-chemistry-of-radiations-cell-signaling-and-cancer-axis/cmbc/chemistry-and-modelling-for-protein-recognition/team-members/?mbr=liliane-mouawad) and are from this [paper](https://jcheminf.biomedcentral.com/articles/10.1186/s13321-016-0167-x). To enable reproduction of our paper results, we make available our computed performance metrics for each of these methods and each target protein in DUD-E.
 
 Note #4: If you manually download and extract the data you might need to update the data paths in the notebooks.
+
+The following files also need to be manually downloaded, if you don't use the provided `download_extract_data.sh` script. 
+* [PDBBind v.2019 general set target data](https://storage.googleapis.com/denvis_v1_data/INDEX_general_PL_data.2019) (save into `data/pdbbdind`)
+* [DENVIS inference times](https://storage.googleapis.com/denvis_v1_outputs/denvis_times.tar.gz) (extract into `data/times`)
+* [DeepDTA inference times](https://storage.googleapis.com/denvis_v1_outputs/deepdta_times.tar.gz) (extract into `data/times`)
 
 ## 2. Set-up environment
 It is recommended you create a `conda` environment using the provided file:
