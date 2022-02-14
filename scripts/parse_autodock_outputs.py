@@ -3,6 +3,8 @@ from rdkit import Chem
 import os
 from tqdm import tqdm
 import click
+import gzip
+import shutil
 
 """
 Parses docked dude data downloaded from:
@@ -11,16 +13,18 @@ https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0220113
 and saves them in a csv format.
 """
 
+
 @click.command()
-@click.argument('output_path', default='../data/outputs/vina_outputs/dude.csv')
-@click.option('docked_dude_path',
+@click.option('--output_path',
+                default='../data/outputs/vina_outputs/dude.csv')
+@click.option('--docked_dude_path',
               default='../data/outputs/vina_outputs/docked_dude')
 def parse_docked_dude_vina(output_path, docked_dude_path):
 
     # need to provide these two arguments but
     # their value is not important because we dont use the
     # actual molecule here
-    removeHs = True
+    remove_hs = True
     sanitize = False
 
     ligand_id = []
@@ -38,7 +42,15 @@ def parse_docked_dude_vina(output_path, docked_dude_path):
             else:
                 print(f'file {abs_path} not in correct form')
                 continue
-            supplier = Chem.SDMolSupplier(abs_path, removeHs=removeHs,
+
+            # Unzip data and save into new file because SDMolSupplier takes
+            # filepath as input argument only
+            save_fn = abs_path[:-3]  # remove .gz file extension
+            with gzip.open(abs_path, 'rb') as f_in:
+                with open(save_fn, 'wb') as f_out:
+                    shutil.copyfileobj(f_in, f_out)
+
+            supplier = Chem.SDMolSupplier(save_fn, removeHs=remove_hs,
                                           sanitize=sanitize)
             for mol in supplier:
                 vina_score = mol.GetProp('minimizedAffinity')
@@ -48,6 +60,8 @@ def parse_docked_dude_vina(output_path, docked_dude_path):
                 target_id.append(target)
                 y_score.append(vina_score)
                 y_true.append(y)
+
+            os.remove(save_fn)
 
     df_vina = pd.DataFrame()
     df_vina['target_list'] = target_id
