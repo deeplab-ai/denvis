@@ -130,3 +130,6 @@ dmypy.json
 
 # data and outputs
 data/
+
+# pycharm-specific
+.idea/
