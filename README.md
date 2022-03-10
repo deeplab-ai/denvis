@@ -49,11 +49,12 @@ This is done because the .sdf files provided in dude.docking.org contain ligands
 ```bash
 wget http://dude.docking.org/targets/aa2ar/actives_final.sdf.gz
 gzip -d actives_final.sdf.gz
+mv actives_final.sdf webservice_data
 ```
 
 ##### run the deduplication script to remove duplicates(ligands with the same ID) from the sdf file
 ```bash
-python scripts/drop_sdf_duplicates.py actives_final.sdf -o ligands_dedup.sdf
+python scripts/drop_sdf_duplicates.py webservice_data/actives_final.sdf -o webservice_data/ligands_dedup.sdf
 ```
 ## 2. Inference via HTTP requests 
 
@@ -61,7 +62,7 @@ After the data has been prepared we can make the request using the following API
 Note: the request can take ~1-2 minutes (depending on the size of the input protein) to complete due to the computationally expensive surface processing
 ### make the request and store the output in a json file
 ```bash
-curl --ipv4 -k -F model=pdbbind_2019_refined -F protein=@"data/dude/all/aa2ar/receptor.pdb" -F crystal_ligand=@"data/dude/all/aa2ar/crystal_ligand.mol2" -F ligand=@"ligands_dedup.sdf" -H "Content-Type: multipart/form-data" -X POST https://denvis.deeplab.ai/screen > aa2ar_denvis_webservice.json
+curl --ipv4 -k -F model=pdbbind_2019_refined -F protein=@"webservice_data/dude/all/aa2ar/receptor.pdb" -F crystal_ligand=@"webservice_data/dude/all/aa2ar/crystal_ligand.mol2" -F ligand=@"ligands_dedup.sdf" -H "Content-Type: multipart/form-data" -X POST https://denvis.deeplab.ai/screen > aa2ar_denvis_webservice.json
 ```
 
 # DENVIS v1.0 paper results reproduction
