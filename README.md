@@ -5,18 +5,19 @@
 We are providing a webservice that performs inference for a protein and some ligands.
 Apart from the protein file a crystal ligand must also be specified so that a protein pocket can be extracted.
 The webservice accepts the following inputs:
-* protein: a protein file in a .pdb format, we suggest using the ones we have provided in the github repo README as we download them directly from PDB using moleculekit so they might be slightly different than the files found in dude, pdbbind websites
-* crystal_ligand: a ligand in .mol2 format, this should be taken from the protein-ligand complex and is used to specify the protein pocket, we do not calculate a screening score for this ligand
-* ligand: a library of ligands in .sdf format, if want to reproduce results you can download this from dude.docking.org
+* protein: a protein file in a `.pdb` format, we suggest using the ones we have provided in the github repo README as we download them directly from PDB using moleculekit so they might be slightly different than the files found in dude, pdbbind websites
+* crystal_ligand: a ligand in `.mol2` format, this should be taken from the protein-ligand complex and is used to specify the protein pocket, we do not calculate a screening score for this ligand
+* ligand: a library of ligands in `.sdf` format, if want to reproduce results you can download this from [dude.docking.org]('http://dude.docking.org')
 Note: only the first 100 ligands in the file will be screened
 
 you also need to specify the model you wish to use for the screening, currently we provide 2 options:
 * pdbbind_2019_refined
 * pdbbind_2019_general
+
 e.g. specify using model=pdbbind_2019_refined when making the request
 The output is a pandas DataFrame in json format and can be loaded using pandas.read_json()
 
-We also provide a notebook that parses the output for a request on a dude target and compares it to the inference results we provide for denvis.
+We also provide a notebook `07_Webservice_output_analysis` that parses the output for a request on a dude target and compares it to the inference results we provide for denvis.
 
 ## 1. Data
 
@@ -40,10 +41,10 @@ tar xzvf dude.tar.gz
 ```
 ### 1.2 Instructions on how to set-up ligand data
 
-You can use any .sdf file as input to the webservice, but only the first 100 ligands will be screened.
-One source of such file is dude.docking.org
-In order to exactly reproduce our results in DUD-E we recommend also running the deduplication script drop_sdf_duplicates.py on the .sdf before making the request.
-This is done because the .sdf files provided in dude.docking.org contain ligands with duplicate IDs.
+You can use any `.sdf` file as input to the webservice, but only the first 100 ligands will be screened.
+One source of such files is [dude.docking.org]('http://dude.docking.org')
+In order to exactly reproduce our results in DUD-E we recommend also running the deduplication script `drop_sdf_duplicates.py` on the `.sdf` file before making the request.
+This is done because the .sdf files provided in [dude.docking.org]('http://dude.docking.org') contain ligands with duplicate IDs.
 
 #### example: download a ligands file from DUD-E
 ```bash
