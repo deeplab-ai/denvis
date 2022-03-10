@@ -24,7 +24,7 @@ The following data have been used for training and validation of DENVIS v1.0 mod
 It is recommended that you run `download_extract_data.sh` to download and extract all output data/scores used in the Benchmark and the ablation studies.
 
 Alternatively, you can manually download the following DUD-E output scores and extract into `data/outputs` folder:
-* [DENVIS](https://storage.googleapis.com/denvis_v1_outputs/denvis_outputs.tar.gz) (1G)
+* [DENVIS](https://storage.googleapis.com/denvis_v1_outputs/denvis_outputs.tar.gz) (960M)
 * [DeepDTA](https://storage.googleapis.com/denvis_v1_outputs/deepdta_outputs.tar.gz) (109M)
 * [AutoDock Vina](https://storage.googleapis.com/denvis_v1_outputs/vina_outputs.tar.gz) (142M)
 * [GNINA](http://bits.csb.pitt.edu/files/defaultCNN_dude.tar.gz) (24M)
