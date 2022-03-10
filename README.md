@@ -85,7 +85,7 @@ conda create -n denvis python=3.7 numpy scipy pandas scikit-learn rdkit matplotl
 ## 4. Summary
 ```bash
 git clone git@github.com:deeplab-ai/denvis.git && cd denvis # Clone repo and enter dir
-chmod +x download_extract_data.sh && bash download_extract_data.sh  # Make data download script executable and execute
+chmod +x download_extract_data.sh && bash download_extract_data.sh  # Execute data download script
 conda env create -f conda_env.yml -y && conda activate denvis  # Create conda env and activate
 python parse_autodock_outputs.py  # (Optional) Parse autodock outputs
 jupyter lab  # Launch Jupyter server to run notebooks
