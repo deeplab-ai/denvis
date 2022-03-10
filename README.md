@@ -81,3 +81,12 @@ conda create -n denvis python=3.7 numpy scipy pandas scikit-learn rdkit matplotl
 * [Ensemble tuning](notebooks/04_Ensemble_tuning.ipynb): Virtual screening performance vs. number of base models in multi-run ensembles (Figure S2).
 * [PDBbind affinity distribution](notebooks/05_PDBbind_affinity_distribution.ipynb): Target distribution of PDBbind v.2019 general set for three binding affinity metrics (Kd, Ki, IC50) (Figure S1).
 * [Inference times](notebooks/06_Inference_times.ipynb): Analysis of inference times with DENVIS and DeepDTA (Table 5).
+
+## 4. Summary
+```bash
+git clone git@github.com:deeplab-ai/denvis.git && cd denvis # Clone repo and enter dir
+chmod +x download_extract_data.sh && bash download_extract_data.sh  # Make data download script executable and execute
+conda env create -f conda_env.yml -y && conda activate denvis  # Create conda env and activate
+python parse_autodock_outputs.py  # (Optional) Parse autodock outputs
+jupyter lab  # Launch Jupyter server to run notebooks
+```
