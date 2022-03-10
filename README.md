@@ -83,10 +83,12 @@ conda create -n denvis python=3.7 numpy scipy pandas scikit-learn rdkit matplotl
 * [Inference times](notebooks/06_Inference_times.ipynb): Analysis of inference times with DENVIS and DeepDTA (Table 5).
 
 ## 4. Summary
+To reproduce the DENVIS paper results execute the following commands serially (i.e. one at a time) a on Unix-like terminal (e.g. Linux/Mac). 
 ```bash
-git clone git@github.com:deeplab-ai/denvis.git && cd denvis # Clone repo and enter dir
+git clone git@github.com:deeplab-ai/denvis.git  # Clone repo
+cd denvis # Enter dir
 chmod +x download_extract_data.sh && bash download_extract_data.sh  # Execute data download script
-conda env create -f conda_env.yml -y && conda activate denvis  # Create conda env and activate
-python parse_autodock_outputs.py  # (Optional) Parse autodock outputs
+conda env create -f conda_env.yml # Create conda env
+conda activate denvis  # Activate conda env
 jupyter lab  # Launch Jupyter server to run notebooks
 ```
