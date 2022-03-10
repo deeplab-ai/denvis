@@ -92,3 +92,16 @@ conda env create -f conda_env.yml # Create conda env
 conda activate denvis  # Activate conda env
 jupyter lab  # Launch Jupyter server to run notebooks
 ```
+
+### Optional
+In order to parse the AutoDock Vina results from scratch, execute the following commands, again one at a time (note that this step is not required as the parsed data are provided):
+```bash
+cd data/outputs/vina_outputs
+mkdir docked_dude
+wget http://bits.csb.pitt.edu/files/docked_dude.tar
+tar -xvf docked_dude.tar -C docked_dude
+rm docked_dude.tar
+cd ../../../scripts
+conda activate denvis
+python parse_autodock_outputs.py 
+```
