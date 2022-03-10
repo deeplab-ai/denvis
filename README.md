@@ -33,7 +33,8 @@ These contain proteins, crystal ligands as well as the pockets extracted using t
 The protein .pdb files provided here can be directly used as input to the App
 
 #### example: download DUDE proteins
-```mkdir webservice_data/dude; cd webservice_data/dude
+```bash
+mkdir webservice_data/dude; cd webservice_data/dude
 wget https://storage.googleapis.com/denvis_v1_data/dude.tar.gz
 tar xzvf dude.tar.gz
 ```
@@ -44,20 +45,23 @@ One source of such file is dude.docking.org
 In order to exactly reproduce our results in DUD-E we recommend also running the deduplication script drop_sdf_duplicates.py on the .sdf before making the request.
 This is done because the .sdf files provided in dude.docking.org contain ligands with duplicate IDs.
 
-#### example download a ligands file from DUD-E
-```wget http://dude.docking.org/targets/aa2ar/actives_final.sdf.gz
+#### example: download a ligands file from DUD-E
+```bash
+wget http://dude.docking.org/targets/aa2ar/actives_final.sdf.gz
 gzip -d actives_final.sdf.gz
 ```
 
 ##### run the deduplication script to remove duplicates(ligands with the same ID) from the sdf file
-```python scripts/drop_sdf_duplicates.py actives_final.sdf -o ligands_dedup.sdf
+```bash
+python scripts/drop_sdf_duplicates.py actives_final.sdf -o ligands_dedup.sdf
 ```
 ## 2. Inference via HTTP requests 
 
 After the data has been prepared we can make the request using the following API:
 Note: the request can take ~1-2 minutes (depending on the size of the input protein) to complete due to the computationally expensive surface processing
 ### make the request and store the output in a json file
-```curl --ipv4 -k -F model=pdbbind_2019_refined -F protein=@"data/dude/all/aa2ar/receptor.pdb" -F crystal_ligand=@"data/dude/all/aa2ar/crystal_ligand.mol2" -F ligand=@"ligands_dedup.sdf" -H "Content-Type: multipart/form-data" -X POST https://denvis.deeplab.ai/screen > aa2ar_denvis_webservice.json
+```bash
+curl --ipv4 -k -F model=pdbbind_2019_refined -F protein=@"data/dude/all/aa2ar/receptor.pdb" -F crystal_ligand=@"data/dude/all/aa2ar/crystal_ligand.mol2" -F ligand=@"ligands_dedup.sdf" -H "Content-Type: multipart/form-data" -X POST https://denvis.deeplab.ai/screen > aa2ar_denvis_webservice.json
 ```
 
 # DENVIS v1.0 paper results reproduction
