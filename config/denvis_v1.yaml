@@ -12,12 +12,12 @@ pretraining:
   protein_gnn:
     num_layers: 5
     mlp_num_hidden_units: 512
-    layer_output_size: [ 100, 150, 200, 250, 300 ]
+    layer_output_size: [100, 150, 200, 250, 300]
     dropout_ratio: 0.0
   ligand_gnn:
     num_layers: 5
     mlp_num_hidden_units: 512
-    layer_output_size: [ 100, 150, 200, 250, 300 ]
+    layer_output_size: [100, 150, 200, 250, 300]
     dropout_ratio: 0.0
   batch_size: 8
   max_epochs: 10
@@ -36,7 +36,7 @@ training:
   ligand_gnn:
     num_layers: 5
     mlp_num_hidden_units: 512
-    layer_output_size: [ 100, 150, 200, 250, 300 ]
+    layer_output_size: [100, 150, 200, 250, 300]
     dropout_ratio: 0.3
   mlp_head:
     num_layers: 1
