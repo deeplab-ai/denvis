@@ -3,20 +3,7 @@
 # Virtual screening inference REST API (Web service)
 
 We provide a webservice that performs inference for a specified protein and a small colection of ligands (maximum of 100 ligands).
-To extract the protein pocket that will be used for virtual screening, a protein structure and a crystal ligand structure must be specified.
-The Web service accepts the following inputs:
-* protein: a protein file in a `.pdb` format. We suggest using the ones we have provided (see below), as we download them directly from PDB using `moleculekit`. As a result, there might be slight differences between our provided data and the ones that are downloaded directly from the various database portals (e.g. DUD-E, PDBbind etc.).
-* crystal_ligand: a ligand in `.mol2` format. This should be taken from the protein-ligand complex and is used to specify the protein pocket. We do not calculate a screening score for this ligand.
-* ligand: a library of ligands in `.sdf` format. If you wish to reproduce the results of our paper, you can download these from [dude.docking.org]('http://dude.docking.org')
-Note: only the first 100 ligands in the file will be screened.
-
-You also need to specify the model you wish to use for the virtual screening. The names represent the database that our models have been trained on, and we currently support the following options:
-* `pdbbind_2019_refined`
-* `pdbbind_2019_general`
-
-For example, specify  `model=pdbbind_2019_refined` when making the request to run inference using the models trained on PDBbind v2019 refined set.
-
-The output is a pandas `DataFrame` in `json` format and can be loaded using `pandas.read_json()`.
+To extract the protein pocket that will be used for virtual screening, a protein and a crystal ligand structure must be specified.
 
 ## 1. Data
 
@@ -30,9 +17,9 @@ The following data have been used for training and validation of DENVIS v1.0 mod
 * [DUD-E](https://storage.googleapis.com/denvis_v1_data/dude.tar.gz) (10M)
 
 These contain proteins, crystal ligands as well as the pockets extracted using the crystal ligand.
-The protein .pdb files provided here can be directly used as input to the Web service.
+The protein `.pdb` files provided here can be directly used as input to the Web service.
 
-#### example: download DUDE proteins
+#### Example: download DUD-E proteins
 ```bash
 mkdir -p webservice_data/dude; cd webservice_data/dude
 wget https://storage.googleapis.com/denvis_v1_data/dude.tar.gz
@@ -41,36 +28,52 @@ cd ../../
 ```
 ### 1.2 Instructions on how to set-up ligand data
 
-You can use any `.sdf` file as input to the webservice, but only the first 100 ligands will be screened.
-One source of such files is [dude.docking.org]('http://dude.docking.org')
-In order to exactly reproduce our results in DUD-E we recommend also running the deduplication script `drop_sdf_duplicates.py` on the `.sdf` file before making the request.
-This is done because the .sdf files provided in [dude.docking.org]('http://dude.docking.org') contain ligands with duplicate IDs.
+You can use any `.sdf` file as input to the Web service, but only the first 100 ligands will be screened.
+One source of such files is [dude.docking.org](http://dude.docking.org/).
 
-#### example: download a ligands file from DUD-E
+Note: if you wish to exactly reproduce our results in DUD-E (see below), we recommend also running the deduplication script `drop_sdf_duplicates.py` on the `.sdf` file before making the request. This is done because the `.sdf` files provided in [dude.docking.org]('http://dude.docking.org') contain ligands with duplicate IDs, which we have removed.
+
+#### Example: download a ligands file from DUD-E
 ```bash
 wget http://dude.docking.org/targets/aa2ar/actives_final.sdf.gz
 gzip -d actives_final.sdf.gz
 mv actives_final.sdf webservice_data
 ```
 
-##### run the deduplication script to remove duplicates(ligands with the same ID) from the sdf file
+##### Run the deduplication script to remove duplicates(ligands with the same ID) from the `.sdf` file
 ```bash
 python scripts/drop_sdf_duplicates.py webservice_data/actives_final.sdf -o webservice_data/ligands_dedup.sdf
 ```
+
 ## 2. Inference via HTTP requests 
 
-After the data has been prepared we can make the request using the following API:
-Note: the request can take ~1-2 minutes (depending on the size of the input protein) to complete due to the computationally expensive surface processing
-### make the request and store the output in a json file
+The Web service accepts the following inputs:
+* protein: a protein file in a `.pdb` format. We suggest using the ones we have provided (see previous section), as we download all protein data from PDB using `moleculekit`. As a result, there might be slight differences between our provided data and the ones that are provided by various database portals (e.g. DUD-E, PDBbind etc.).
+* crystal_ligand: a ligand in `.mol2` format. This should be taken from the protein-ligand complex and is used to specify the protein pocket. We do not calculate a screening score for this ligand.
+* ligand: a library of ligands in `.sdf` format. If you wish to reproduce the results of our paper, you can download these from [dude.docking.org]('http://dude.docking.org') and use the [provided deduplication script](scripts/drop_sdf_duplicates.py) (see above).
+Note: only the first 100 ligands in the file will be screened.
+
+You also need to specify the model you wish to use for the virtual screening. The names represent the database that our models have been trained on, and we currently support the following options:
+* `pdbbind_2019_refined`
+* `pdbbind_2019_general`
+
+For example, specify  `model=pdbbind_2019_refined` when making the request to run inference using the models trained on PDBbind v2019 refined set.
+
+The output is a pandas `DataFrame` in `json` format and can be loaded using `pandas.read_json()`.
+
+After the data has been prepared, we can make the request using the following API:
+Note: the request can take ~1-2 minutes (depending on the size of the input protein) to complete due to the computationally expensive surface pre-processing step.
+### Make the request and store the output in a json file
+From a Unix-like terminal (e.g. Linux/Mac) execute:
 ```bash
 curl --ipv4 -k -F model=pdbbind_2019_refined -F protein=@"webservice_data/dude/all/aa2ar/receptor.pdb" -F crystal_ligand=@"webservice_data/dude/all/aa2ar/crystal_ligand.mol2" -F ligand=@"webservice_data/ligands_dedup.sdf" -H "Content-Type: multipart/form-data" -X POST https://denvis.deeplab.ai/screen > webservice_data/aa2ar_denvis_webservice.json
 ```
 
 ## 3. Demo
-We provide a demo notebook [07_Webservice_output_analysis](notebooks/07_Webservice_output_analysis.ipynb) that parses the output for a request on a dude target and compares it to the inference results we provide for denvis.
+We provide a [demo notebook](notebooks/07_Webservice_output_analysis.ipynb) that parses the output for a request on a specified target from the DUD-E database, and compares it to the inference scores we provide from to reproduce the results from our DENVIS v1.0 publication (see below).
 
 
-# DENVIS v1.0 paper results reproduction
+# DENVIS v1.0 publication results reproduction
 ## 1. Download output scores
 
 It is recommended that you run `download_extract_data.sh` to download and extract all output data/scores used in the Benchmark and the ablation studies.
@@ -133,6 +136,7 @@ conda create -n denvis python=3.7 numpy scipy pandas scikit-learn rdkit matplotl
 * [Ensemble tuning](notebooks/04_Ensemble_tuning.ipynb): Virtual screening performance vs. number of base models in multi-run ensembles (Figure S2).
 * [PDBbind affinity distribution](notebooks/05_PDBbind_affinity_distribution.ipynb): Target distribution of PDBbind v.2019 general set for three binding affinity metrics (Kd, Ki, IC50) (Figure S1).
 * [Inference times](notebooks/06_Inference_times.ipynb): Analysis of inference times with DENVIS and DeepDTA (Table 5).
+* [Web service demo](notebooks/07_Webservice_output_analysis.ipynb): Demonstration of parsing output from the Web service (REST API) and comparison with the results from the DENVIS v1.0 publication.
 
 ## 4. Summary
 To reproduce the DENVIS paper results, execute the following commands one at a time in a Unix-like terminal (e.g. Linux/Mac). 
