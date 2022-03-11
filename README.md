@@ -1,23 +1,22 @@
 # Deep Neural Virtual Screening (DENVIS)
 
-# Inference API
+# Virtual screening inference REST API (Web service)
 
-We are providing a webservice that performs inference for a protein and some ligands.
-Apart from the protein file a crystal ligand must also be specified so that a protein pocket can be extracted.
-The webservice accepts the following inputs:
-* protein: a protein file in a `.pdb` format, we suggest using the ones we have provided in the github repo README as we download them directly from PDB using moleculekit so they might be slightly different than the files found in dude, pdbbind websites
-* crystal_ligand: a ligand in `.mol2` format, this should be taken from the protein-ligand complex and is used to specify the protein pocket, we do not calculate a screening score for this ligand
-* ligand: a library of ligands in `.sdf` format, if want to reproduce results you can download this from [dude.docking.org]('http://dude.docking.org')
-Note: only the first 100 ligands in the file will be screened
+We provide a webservice that performs inference for a specified protein and a small colection of ligands (maximum of 100 ligands).
+To extract the protein pocket that will be used for virtual screening, a protein structure and a crystal ligand structure must be specified.
+The Web service accepts the following inputs:
+* protein: a protein file in a `.pdb` format. We suggest using the ones we have provided (see below), as we download them directly from PDB using `moleculekit`. As a result, there might be slight differences between our provided data and the ones that are downloaded directly from the various database portals (e.g. DUD-E, PDBbind etc.).
+* crystal_ligand: a ligand in `.mol2` format. This should be taken from the protein-ligand complex and is used to specify the protein pocket. We do not calculate a screening score for this ligand.
+* ligand: a library of ligands in `.sdf` format. If you wish to reproduce the results of our paper, you can download these from [dude.docking.org]('http://dude.docking.org')
+Note: only the first 100 ligands in the file will be screened.
 
-you also need to specify the model you wish to use for the screening, currently we provide 2 options:
-* pdbbind_2019_refined
-* pdbbind_2019_general
+You also need to specify the model you wish to use for the virtual screening. The names represent the database that our models have been trained on, and we currently support the following options:
+* `pdbbind_2019_refined`
+* `pdbbind_2019_general`
 
-e.g. specify using model=pdbbind_2019_refined when making the request
-The output is a pandas DataFrame in json format and can be loaded using pandas.read_json()
+For example, specify  `model=pdbbind_2019_refined` when making the request to run inference using the models trained on PDBbind v2019 refined set.
 
-We also provide a notebook `07_Webservice_output_analysis` that parses the output for a request on a dude target and compares it to the inference results we provide for denvis.
+The output is a pandas `DataFrame` in `json` format and can be loaded using `pandas.read_json()`.
 
 ## 1. Data
 
@@ -31,7 +30,7 @@ The following data have been used for training and validation of DENVIS v1.0 mod
 * [DUD-E](https://storage.googleapis.com/denvis_v1_data/dude.tar.gz) (10M)
 
 These contain proteins, crystal ligands as well as the pockets extracted using the crystal ligand.
-The protein .pdb files provided here can be directly used as input to the App
+The protein .pdb files provided here can be directly used as input to the Web service.
 
 #### example: download DUDE proteins
 ```bash
@@ -65,6 +64,10 @@ Note: the request can take ~1-2 minutes (depending on the size of the input prot
 ```bash
 curl --ipv4 -k -F model=pdbbind_2019_refined -F protein=@"webservice_data/dude/all/aa2ar/receptor.pdb" -F crystal_ligand=@"webservice_data/dude/all/aa2ar/crystal_ligand.mol2" -F ligand=@"ligands_dedup.sdf" -H "Content-Type: multipart/form-data" -X POST https://denvis.deeplab.ai/screen > aa2ar_denvis_webservice.json
 ```
+
+## 3. Demo
+We provide a demo notebook [07_Webservice_output_analysis](notebooks/07_Webservice_output_analysis.ipynb) that parses the output for a request on a dude target and compares it to the inference results we provide for denvis.
+
 
 # DENVIS v1.0 paper results reproduction
 ## 1. Download output scores
