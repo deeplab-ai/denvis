@@ -34,9 +34,10 @@ The protein .pdb files provided here can be directly used as input to the Web se
 
 #### example: download DUDE proteins
 ```bash
-mkdir webservice_data/dude; cd webservice_data/dude
+mkdir -p webservice_data/dude; cd webservice_data/dude
 wget https://storage.googleapis.com/denvis_v1_data/dude.tar.gz
-tar xzvf dude.tar.gz
+tar xzvf dude.tar.gz; rm dude.tar.gz
+cd ../../
 ```
 ### 1.2 Instructions on how to set-up ligand data
 
@@ -62,7 +63,7 @@ After the data has been prepared we can make the request using the following API
 Note: the request can take ~1-2 minutes (depending on the size of the input protein) to complete due to the computationally expensive surface processing
 ### make the request and store the output in a json file
 ```bash
-curl --ipv4 -k -F model=pdbbind_2019_refined -F protein=@"webservice_data/dude/all/aa2ar/receptor.pdb" -F crystal_ligand=@"webservice_data/dude/all/aa2ar/crystal_ligand.mol2" -F ligand=@"ligands_dedup.sdf" -H "Content-Type: multipart/form-data" -X POST https://denvis.deeplab.ai/screen > aa2ar_denvis_webservice.json
+curl --ipv4 -k -F model=pdbbind_2019_refined -F protein=@"webservice_data/dude/all/aa2ar/receptor.pdb" -F crystal_ligand=@"webservice_data/dude/all/aa2ar/crystal_ligand.mol2" -F ligand=@"webservice_data/ligands_dedup.sdf" -H "Content-Type: multipart/form-data" -X POST https://denvis.deeplab.ai/screen > webservice_data/aa2ar_denvis_webservice.json
 ```
 
 ## 3. Demo
