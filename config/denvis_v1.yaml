@@ -1,0 +1,53 @@
+preprocessing:
+  protein:
+    atom:
+      pocket_radius: 10
+      protonated: True
+    surface:
+      pocket_radius: 3
+      protonated: True
+  ligand:
+    protonated: True
+pretraining:
+  protein_gnn:
+    num_layers: 5
+    mlp_num_hidden_units: 512
+    layer_output_size: [ 100, 150, 200, 250, 300 ]
+    dropout_ratio: 0.0
+  ligand_gnn:
+    num_layers: 5
+    mlp_num_hidden_units: 512
+    layer_output_size: [ 100, 150, 200, 250, 300 ]
+    dropout_ratio: 0.0
+  batch_size: 8
+  max_epochs: 10
+  optimizer:
+    name: Adam
+    learning_rate: 0.001
+    betas: [0.9, 0.999]
+    eps: 1e-08
+    weight_decay: 0.0
+training:
+  protein_gnn:
+    num_layers: 5
+    mlp_num_hidden_units: 512
+    layer_output_size: [100, 150, 200, 250, 300]
+    dropout_ratio: 0.3
+  ligand_gnn:
+    num_layers: 5
+    mlp_num_hidden_units: 512
+    layer_output_size: [ 100, 150, 200, 250, 300 ]
+    dropout_ratio: 0.3
+  mlp_head:
+    num_layers: 1
+    dropout_ratio: 0.3
+  batch_size: 8
+  max_epochs: 600
+  optimizer:
+    name: AdamW
+    learning_rate: 0.001
+    betas: [0.9, 0.999]
+    eps: 1e-08
+    weight_decay: 0.001
+  dropout_ratio: 0.3
+  negative_sampling_ratio: 1
