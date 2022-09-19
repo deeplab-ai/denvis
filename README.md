@@ -130,7 +130,7 @@ conda create -n denvis python=3.7 numpy scipy pandas scikit-learn rdkit matplotl
 ```
 
 ## 3. Run notebooks
-* [Benchmark](notebooks/01_Benchmark.ipynb): Virtual screening benchmark on DUD-E dataset (Figures 3, 4; Tables 3, 4, S1, S2, S3).
+* [Benchmark DUD-E](notebooks/01_Benchmark_DUDE.ipynb): Virtual screening benchmark on DUD-E dataset (Figures 3, 4; Tables 3, 4, S1, S2, S3).
 * [Ablation studies](notebooks/02_Ablation_studies.ipynb): Ablation studies for DENVIS model (Figures 5, 6; Tables 6, 7).
 * [Performance metrics](notebooks/03_Performance_metrics.ipynb): Analysis of virtual screening performance metrics (Figure 7).
 * [Ensemble tuning](notebooks/04_Ensemble_tuning.ipynb): Virtual screening performance vs. number of base models in multi-run ensembles (Figure S2).
