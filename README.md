@@ -15,6 +15,7 @@ The following data have been used for training and validation of DENVIS v1.0 mod
 * [PDBBind v.2019 core set](https://storage.googleapis.com/denvis_v1_data/pdbbind_v2019_core.tar.gz) (28M)
 * [TOUGH-M1](https://storage.googleapis.com/denvis_v1_data/tough_m1.tar.gz) (895M)
 * [DUD-E](https://storage.googleapis.com/denvis_v1_data/dude.tar.gz) (10M)
+* [Lit-PCBA](https://storage.googleapis.com/denvis_v1_data/Lit-PCBA.tar.gz) (47M)
 
 These contain proteins, crystal ligands as well as the pockets extracted using the crystal ligand.
 The protein `.pdb` files provided here can be directly used as input to the Web service.
