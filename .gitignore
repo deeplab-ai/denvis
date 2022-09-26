@@ -130,3 +130,8 @@ dmypy.json
 
 # pycharm-specific
 .idea/
+
+# data
+data/outputs
+data/pdbbind
+data/times
