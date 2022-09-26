@@ -80,8 +80,8 @@ We provide a [demo notebook](notebooks/07_Webservice_output_analysis.ipynb) that
 It is recommended that you run `download_extract_data.sh` to download and extract all output data/scores used in the Benchmark and the ablation studies.
 
 Alternatively, you can manually download the following DUD-E output scores and extract into `data/outputs` folder:
-* [DENVIS](https://storage.googleapis.com/denvis_v1_outputs/denvis_outputs.tar.gz) (960M)
-* [DeepDTA](https://storage.googleapis.com/denvis_v1_outputs/deepdta_outputs.tar.gz) (109M)
+* [DENVIS](https://storage.googleapis.com/denvis_v1_outputs/denvis_outputs.tar.gz) (3.2G)
+* [DeepDTA](https://storage.googleapis.com/denvis_v1_outputs/deepdta_outputs.tar.gz) (939M)
 * [AutoDock Vina](https://storage.googleapis.com/denvis_v1_outputs/vina_outputs.tar.gz) (142M)
 * [GNINA](http://bits.csb.pitt.edu/files/defaultCNN_dude.tar.gz) (24M)
 * [RF-score & NN-score](http://bits.csb.pitt.edu/files/rfnn_dude_scores.tgz) (189M)
