@@ -119,7 +119,7 @@ Alternatively, if you can create your own environment, the following packages ar
 * `pingouin`
 * `pyarrow`
 * `tqdm`
-* `jupyter`
+* `jupyterlab`
 * `tensorboard`
 
 The followng package is also required for running the optional `parse_autodock_outputs.py` script.
