@@ -280,3 +280,34 @@ def target_ligand_pair_reduction(results_df, reduce):
         raise ValueError(f"Unsupported reduce argument f{reduce}.")
 
     return results_df
+
+def process_target_id(results_df, dataset):
+    """Decouples the `target_id` column into two columns `target_id` and
+    target_pdb`. This is required because LIT-PCBA targets are saved as:
+    <lit_pcba_id>#<pdb_code>. For other datasets it just returns the input.
+
+    Args:
+        results_df: pd.DataFrame
+            Results DataFrame with the following columns:
+            `['target_id', 'ligand_id', 'y_true', 'y_score',
+            'version', 'ckpt']`.
+
+        dataset: str
+            Dataset name.
+
+    Returns:
+        results_df: pd.DataFrame
+            Results DataFrame with the following columns:
+            `['target_id', 'target_pdb', ligand_id', 'y_true', 'y_score',
+            'version', 'ckpt']`.
+    """
+    if dataset == 'LIT-PCBA':
+        def process_row(row):
+            target = row['target_id']
+            target_id, target_pdb = target.split('#')
+            return target_id, target_pdb
+
+        results_df[['target_id', 'target_pdb']] = results_df.apply(
+            lambda row: process_row(row), axis=1, result_type='expand')
+
+    return results_df
