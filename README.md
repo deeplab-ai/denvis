@@ -102,7 +102,7 @@ The following files also need to be manually downloaded, if you don't use the pr
 * [DeepDTA inference times](https://storage.googleapis.com/denvis_v1_outputs/deepdta_times.tar.gz) (extract into `data/times`)
 
 ## 2. Set-up environment
-It is recommended you create a `conda` environment using the provided file:
+It is recommended you create a `conda` environment using the provided file (tested on macOS only):
 ```bash
 conda env create -f conda_env.yml
 ```
@@ -120,6 +120,7 @@ Alternatively, if you can create your own environment, the following packages ar
 * `pyarrow`
 * `tqdm`
 * `jupyter`
+* `tensorboard`
 
 The followng package is also required for running the optional `parse_autodock_outputs.py` script.
 * `click`
@@ -127,7 +128,7 @@ The followng package is also required for running the optional `parse_autodock_o
 
 Example using `conda`:
 ```bash
-conda create -n denvis python=3.7 numpy scipy pandas scikit-learn rdkit matplotlib seaborn pingouin pyarrow click tqdm jupyter -c conda-forge -c rdkit
+conda create -n denvis python=3.7 numpy scipy pandas scikit-learn rdkit matplotlib seaborn pingouin pyarrow click tqdm jupyter tensorboard -c conda-forge -c rdkit
 ```
 
 ## 3. Run notebooks
