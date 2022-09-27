@@ -6,6 +6,7 @@ wget -P data/outputs http://bits.csb.pitt.edu/files/defaultCNN_dude.tar.gz
 wget -P data/outputs http://bits.csb.pitt.edu/files/rfnn_dude_scores.tgz
 wget -P data/outputs https://storage.googleapis.com/denvis_v1_outputs/docking_performance_scores.tar.gz
 wget -P data/pdbbind https://storage.googleapis.com/denvis_v1_data/INDEX_general_PL_data.2019
+wget -P data/litpcba https://storage.googleapis.com/denvis_v1_data/lit_pcba_pdb_correspondence.json
 wget -P data/times https://storage.googleapis.com/denvis_v1_outputs/denvis_times.tar.gz
 wget -P data/times https://storage.googleapis.com/denvis_v1_outputs/deepdta_times.tar.gz
 
