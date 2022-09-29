@@ -1,5 +1,7 @@
 # Deep Neural Virtual Screening (DENVIS)
 
+This repo contains instructions on how to use a REST API for the DENVIS model and reproduce the results published in the paper "DENVIS: Scalable and High-Throughput Virtual Screening Using Graph Neural Networks with Atomic and Surface Protein Pocket Features" published in JCIM. Please consider [citing](https://github.com/deeplab-ai/denvis/edit/main/README.md#citation) our work if you use the DENVIS model in your work or the produced outputs. 
+
 # Virtual screening inference REST API (Web service)
 
 We provide a webservice that performs inference for a specified protein and a small colection of ligands (maximum of 100 ligands).
@@ -162,4 +164,16 @@ rm docked_dude.tar
 cd ../../../scripts
 conda activate denvis
 python parse_autodock_outputs.py 
+```
+
+## Citation
+```
+@article{doi:10.1021/acs.jcim.2c01057,
+author = {Krasoulis, Agamemnon and Antonopoulos, Nick and Pitsikalis, Vassilis and Theodorakis, Stavros},
+title = {DENVIS: Scalable and High-Throughput Virtual Screening Using Graph Neural Networks with Atomic and Surface Protein Pocket Features},
+journal = {Journal of Chemical Information and Modeling},
+volume = {0},
+number = {0},
+pages = {null},
+year = {0},
 ```
