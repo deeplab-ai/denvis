@@ -19,12 +19,10 @@ for file in *.tar.gz; do tar xzvf "${file}" && rm "${file}"; done
 mkdir rfnn_dude_scores && tar zxvf rfnn_dude_scores.tgz -C rfnn_dude_scores/ && rm rfnn_dude_scores.tgz
 
 # Extract GNINA outputs (separately for DUD-E and LIT-PCBA)
-cd gnina_outputs/dude
-for file in *.tar.gz; do tar xzvf "${file}" && rm "${file}"; done
-cd ../litpcba
-for file in *.tar.gz; do tar xzvf "${file}" && rm "${file}"; done
+for file in gnina_outputs/*/*.tar.gz; do dir=$(dirname "${file}") && tar xzvf "${file}" -C "${dir}" && rm "${file}"; done
 
 # Extract inference time data and remove compressed files
-cd ../../times
-for file in *.tar.gz; do tar xzvf "${file}" && rm "${file}"; done
+cd ..
+
+for file in times/*.tar.gz; do dir=$(dirname "${file}") && tar xzvf "${file}" -C "${dir}" && rm "${file}"; done
 
