@@ -1,6 +1,6 @@
 # Deep Neural Virtual Screening (DENVIS)
 
-This repo contains instructions on how to use a REST API for the DENVIS model and reproduce the results published in the paper "DENVIS: Scalable and High-Throughput Virtual Screening Using Graph Neural Networks with Atomic and Surface Protein Pocket Features" published in JCIM. Please consider [citing](https://github.com/deeplab-ai/denvis/edit/main/README.md#citation) our work if you use the DENVIS model in your work or the produced outputs. 
+This repo contains instructions on how to use a REST API for the DENVIS model and reproduce the results published in the paper "DENVIS: Scalable and High-Throughput Virtual Screening Using Graph Neural Networks with Atomic and Surface Protein Pocket Features" published in JCIM. Please consider [citing](https://github.com/deeplab-ai/denvis#citation) our work if you use the DENVIS model in your work or the produced outputs. 
 
 # Virtual screening inference REST API (Web service)
 
