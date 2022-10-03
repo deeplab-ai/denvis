@@ -69,7 +69,7 @@ Note: the request can take ~1-2 minutes (depending on the size of the input prot
 ### Make the request and store the output in a json file
 From a Unix-like terminal (e.g. Linux/Mac) execute:
 ```bash
-curl --ipv4 -k -F model=pdbbind_2019_refined -F protein=@"webservice_data/dude/all/aa2ar/receptor.pdb" -F crystal_ligand=@"webservice_data/dude/all/aa2ar/crystal_ligand.mol2" -F ligand=@"webservice_data/ligands_dedup.sdf" -H "Content-Type: multipart/form-data" -X POST https://denvis.deeplab.ai/screen > webservice_data/aa2ar_denvis_webservice.json
+curl --ipv4 -k -F model=pdbbind_2019_refined -F protein=@"webservice_data/dude/all/aa2ar/receptor.pdb" -F crystal_ligand=@"webservice_data/dude/all/aa2ar/crystal_ligand.mol2" -F ligand=@"webservice_data/ligands_dedup.sdf" -H "Content-Type: multipart/form-data" -X POST https://denvis.deeplab.ai > webservice_data/aa2ar_denvis_webservice.json
 ```
 
 ## 3. Demo
